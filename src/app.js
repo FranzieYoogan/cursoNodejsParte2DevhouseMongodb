@@ -7,7 +7,7 @@ class App {
     constructor() {
 
         this.server = express();
-        mongoose.connect('mongodb+srv://PatrickSantos_db_user:p357159@cluster0.qpjw9pr.mongodb.net/devhouse');
+        mongoose.connect('cluster');
         this.middelwares();
         this.routes();
 
