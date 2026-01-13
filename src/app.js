@@ -1,5 +1,7 @@
 const express = require('express'); // import express from 'express'
 const routes = require('./routes');
+const path = require('path');
+const cors = require('cors');
 const mongoose = require('mongoose');
 
 class App {
@@ -7,7 +9,7 @@ class App {
     constructor() {
 
         this.server = express();
-        mongoose.connect('mongodb+srv://PatrickSantos_db_user:p357159@cluster0.qpjw9pr.mongodb.net/devhouse');
+        mongoose.connect('kluster');
         this.middelwares();
         this.routes();
 
@@ -15,6 +17,13 @@ class App {
 
     middelwares() {
 
+        this.server.use(cors()); // nao temos um dominio para limitar as requisiçoes via cors
+        
+        // caminho para arquivos estaticos
+        this.server.use(
+            '/files',
+            express.static(path.resolve(__dirname, '..', 'uploads'))
+        )
         this.server.use(express.json());
 
     }
